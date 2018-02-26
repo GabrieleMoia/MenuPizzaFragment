@@ -21,6 +21,7 @@ public class DetailFragment extends Fragment {
 
     TextView nome;
     TextView descrizione;
+
     @TargetApi(Build.VERSION_CODES.M)
 
     @Override
@@ -28,23 +29,27 @@ public class DetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.detail_fragment, container, false);
 
 
-        nome=(TextView) rootView.findViewById(R.id.NomePizza);
-        descrizione=(TextView)rootView.findViewById(R.id.Description);
+        nome = (TextView) rootView.findViewById(R.id.NomePizza);
+        descrizione = (TextView) rootView.findViewById(R.id.Description);
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstance) {
-        super.onViewCreated(view,savedInstance);
+        super.onViewCreated(view, savedInstance);
 
-        Bundle bundle=getArguments();
-        String name=bundle.getString("nome");
-        String description=bundle.getString("description");
-        nome.setText(name);
-        descrizione.setText(description);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String name = bundle.getString("name");
+            String description = bundle.getString("description");
+            nome.setText(name);
+            descrizione.setText(description);
+        }
     }
-
-
-
 }
+
+
+
+
 

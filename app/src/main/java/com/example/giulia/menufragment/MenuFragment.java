@@ -16,27 +16,24 @@ import android.widget.ListView;
 
 public class MenuFragment extends Fragment  {
 
-    OnHeadlineSelectedListener mCallback;
+    OnHeadLinesFragment mCallback;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mCallback = (OnHeadlineSelectedListener) getActivity();
+            mCallback = (OnHeadLinesFragment) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString() + "must implementOnHeadlineSelectedListener");
         }
     }
 
-    public interface OnHeadlineSelectedListener{
-        public void onArticleSelected(int position);
-
-    }
 
     @TargetApi(Build.VERSION_CODES.M)
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.menu_fragment, container, false);
         return rootView;
     }
@@ -59,27 +56,10 @@ public class MenuFragment extends Fragment  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Pizza pizza = (Utils.getItemByPosition(getActivity(), position));
+                mCallback.onArticleSelected(position);
 
 
-                DetailFragment detailFragment= new DetailFragment();
-                Bundle bundle=new Bundle();
-                bundle.putString("description", pizza.getDescription());
-                bundle.putString("nome",pizza.getNome());
 
-                detailFragment.setArguments(bundle);
-
-                //mCallback.onArticleSelected(position);
-
-
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-
-                fragmentTransaction.replace(R.id.container,detailFragment).commit();
-
-                /*Intent intent=new Intent(getActivity().getBaseContext(),MainActivity.class);
-
-                intent.putExtra("nome", pizza.getNome());
-                startActivity(intent);*/
             }
         });
 

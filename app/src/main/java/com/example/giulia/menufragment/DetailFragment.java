@@ -1,6 +1,7 @@
 package com.example.giulia.menufragment;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Build;
@@ -22,6 +23,7 @@ public class DetailFragment extends Fragment {
     TextView nome;
     TextView descrizione;
 
+
     @TargetApi(Build.VERSION_CODES.M)
 
     @Override
@@ -38,8 +40,7 @@ public class DetailFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
 
-
-        Bundle bundle = getArguments();
+        Bundle bundle = this.getArguments();
         if (bundle != null) {
             String name = bundle.getString("name");
             String description = bundle.getString("description");

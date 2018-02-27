@@ -18,17 +18,10 @@ String description;
         return nome;
     }
 
-    public void setNome(String nome){
-        this.nome=nome;
-    }
-
     public String getDescription(){
         return description;
     }
 
-    public void setDescrizione(String descrizione){
-        this.description=descrizione;
-    }
 
 
 }
